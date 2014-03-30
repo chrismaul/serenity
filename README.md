@@ -5,7 +5,7 @@ Manage a service on multiple PaaS layers. This application can deploy multiple v
 
 Requirements
 ========
--- nodejs
--- couchdb
--- cf command ( for deployments to cloud foundry )
+- nodejs
+- couchdb
+- cf command ( for deployments to cloud foundry )
 
