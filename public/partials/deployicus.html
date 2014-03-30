@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>Build, {{ site }}</h3>
+      <p>Configure your build</p>
+    </div>
+    <form class="form-horizontal" role="form">
+    <div class="well">
+      <label>Build</label>
+    <div class="row">
+    <div class="form-group col-sm-4">
+      <label for="buildInterval" class="control-label">Build Interval</label>
+      <input type="number" class="form-control" placeholder="Build Interval" required ng-model="buildInterval" />
+    </div>
+    <div class="form-group col-sm-4">
+      <label for="nextScale" class="control-label">Next Scale</label>
+      <input type="number" class="form-control" placeholder="Next Scale" required ng-model="nextScale" />
+    </div>
+    <div class="form-group col-sm-4">
+      <label for="startScale" class="control-label">Start Scale</label>
+      <input type="number" class="form-control" placeholder="Start Scale" required ng-model="startScale" />
+    </div>
+    </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="repo" class="control-label">Git Repo</label>
+      <input type="text" class="form-control" placeholder="Git Repo" required ng-model="repo" />
+    </div>
+    </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="basedir" class="control-label">Base Directory</label>
+      <input type="text" class="form-control" placeholder="Base Directory" required ng-model="basedir" />
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="deployOptions" class="control-label">Deploy Options</label>
+      <textarea class="form-control" placeholder="Deploy Options" required ng-model="deployOptions" >
+      </textarea>
+    </div>
+    </div>
+    <label>Stage deployment</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>Next Level</th>
+          <th>Next Scale</th>
+          <th><button type="button" class="btn btn-link btn-xs"
+              ng-click="stageDeploy.push({})">
+                <span class="text-success glyphicon glyphicon-plus"></span>
+              </button>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in stageDeploy">
+          <td><input type="number" class="form-control" placeholder="Level" ng-model="item.id" required /> </td>
+          <td><input type="number" class="form-control" placeholder="Next Level" ng-model="item.nextLevel" required /> </td>
+          <td><input type="number" class="form-control" placeholder="Next Scale" ng-model="item.nextScale" required /> </td>
+         <td>
+            <button type="button" class="btn btn-link btn-xs"  ng-click="deleteRow( features,$index)" >
+              <span class="text-danger glyphicon glyphicon-minus"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+</form>
+</div>
+

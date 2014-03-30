@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>Configure, {{ site }}</h3>
+    <p>Configure your site</p>
+  </div>
+  <form class="form-horizontal" role="form">
+  <div class="well">
+    <label>Routes</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Deployment</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(deployName, deployment) in deployConfig">
+          <td>{{deployName}}</td>
+          <td>
+            <div class="row">
+              <div class="col-md-2">
+                <input class="form-control" type="number" name="input" ng-model="router.balance[deployName]" min="0" max="10" required />
+              </div>
+              <div class="col-md-6">
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{router.balance[deployName] * 10}}%"></div>
+               </div>
+             </div>
+          </div>
+         </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <hr  />
+    <div class="well">
+    <label>Features</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Balance</th>
+          <th><button type="button" class="btn btn-link btn-xs"
+              ng-click="features.push({})">
+                <span class="text-success glyphicon glyphicon-plus"></span>
+              </button>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in features">
+          <td><input type="text" class="form-control" placeholder="Feature" ng-model="item.key" required /> </td>
+          <td>
+            <div class="row">
+              <div class="col-md-3">
+                <input class="form-control" type="number" name="input" ng-model="router.balance[deployName]" min="0" max="10" required />
+              </div>
+              <div class="col-md-6">
+                <div class="progress">
+                  <div class="progress-bar" style="width: {{router.balance[deployName] * 10}}%"></div>
+               </div>
+             </div>
+          </div>
+         </td>
+         <td>
+            <button type="button" class="btn btn-link btn-xs"  ng-click="deleteRow( features,$index)" >
+              <span class="text-danger glyphicon glyphicon-minus"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <hr  />
+    <div class="well">
+    <label>Routes</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Route</th>
+          <th>Feature</th>
+          <th>Timeout</th>
+          <th>Retry</th>
+          <th>Redirect Url</th>
+          <th><button type="button" class="btn btn-link btn-xs"
+              ng-click="routes.push({})">
+                <span class="text-success glyphicon glyphicon-plus"></span>
+              </button>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in routes">
+          <td><input type="text" class="form-control" placeholder="Route" ng-model="item.key" required /> </td>
+          <td><input type="text" class="form-control" placeholder="Feature" ng-model="item.feature" required /> </td>
+          <td><input type="number" class="form-control" placeholder="Timeout" ng-model="item.timeout" min="0" max="10" required /> </td>
+          <td><input type="number" class="form-control" placeholder="Retry" ng-model="item.retryCount" min="0" max="10" required /> </td>
+          <td><input type="text" class="form-control" placeholder="Redirect Url" ng-model="item.url" required /> </td>
+         <td>
+            <button type="button" class="btn btn-link btn-xs"  ng-click="deleteRow( routes, $index)" >
+              <span class="text-danger glyphicon glyphicon-minus"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <hr  />
+    <h2>Deployment</h2>
+    <div class="row">
+      <div class="col-sm-5"><p>
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="newDeploymentName" required />
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="button" ng-click="addDeployment(newDeploymentName)" ><span class="glyphicon glyphicon-plus"></span> New Deployer</button>
+          </span>
+        </div></p>
+      </div>
+    </div>
+    
+    <div ng-repeat="(deployName, deployment) in deployConfig" class="well" >
+      <div class="row">
+<div class="col-sm-3"><h4>{{deployName}}</h4></div>
+<div class="col-sm-4">
+<button class="btn btn-danger" type="button" ng-click="deleteDeployment(deployName)"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+</div>
+</div><div class="row">
+        <div class="form-group col-sm-4">
+          <label for="type" class=" control-label">Type:</label>
+            <select class="form-control" name="type" ng-model="deployment.type" required>
+              <option value="cf">Cloud Foundry</option>
+              <option value="softlayer">SoftLayer</option>
+              <option value="heroku">Heroku</option>
+            </select>
+        </div>
+              
+      </div>
+      <div ng-include="'/partials/'+deployment.type+'_config.html'">
+      </div>
+    </div>
+</form>
+</div>
+

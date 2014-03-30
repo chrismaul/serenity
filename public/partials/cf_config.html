@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="form-group col-sm-4">
+    <label for="user" class="control-label">Username</label>
+    <input type="text" class="form-control" placeholder="Username" required ng-model="deployment.deployConfig.username" />
+  </div>
+    <div class="form-group col-sm-4">
+    <label for="password" class="control-label">Password</label>
+    <input type="password" class="form-control" placeholder="Password" required ng-model="deployment.deployConfig.password" />
+  </div>
+  <div class="form-group col-sm-4">
+    <label for="org" class="control-label">Organization</label>
+    <input type="text" placeholder="Organization" class="form-control" ng-model="deployment.deployConfig.org" />
+  </div>
+    <div class="form-group col-sm-4">
+    <label for="space" class="control-label">Space</label>
+    <input type="text" placeholder="Space" class="form-control" ng-model="deployment.deployConfig.space" />
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-sm-6">
+    <label for="target" class="control-label">Target</label>
+    <input type="text" class="form-control"  placeholder="Target" required ng-model="deployment.deployConfig.target" />
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="text" class="control-label">Domain</label>
+    <input type="text" class="form-control" placeholder="Domain" required ng-model="deployment.deployConfig.domain" />
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-sm-8">
+    <label for="buildpack" class="control-label">Build Pack</label>
+    <input type="text" class="form-control"  placeholder="buildpack" required ng-model="deployment.deployConfig.buildpack" />
+  </div>
+</div>
+<div class="row" ng-include="'/partials/env.html'"> 
+</div>
+<div class="row">
+<label>Versions</label>
+<table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Url</th>
+          <th>Features</th>
+          <th>Balance</th>
+          <th><button type="button" class="btn btn-link btn-xs" 
+              ng-click="deployment.versions.push({})">
+                <span class="text-success glyphicon glyphicon-plus"></span>
+              </button>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in deployment.versions">
+      <td><input type="text" class="form-control" placeholder="Name" ng-model="item.id" required /> </td>
+      <td><input type="url" class="form-control" placeholder="Url" ng-model="item.url" required /> </td>
+      <td><input type="text" class="form-control" placeholder="Features" ng-model="item.features" required /> </td>
+      <td><input type="number" class="form-control" placeholder="Balance" ng-model="item.balance" required /> </td>
+      <td>
+            <button type="button" class="btn btn-link btn-xs"  ng-click="deleteRow( deployment.versions,$index)" >
+              <span class="text-danger glyphicon glyphicon-minus"></span>
+            </button>
+          </td>        </tr>
+      </tbody>
+    </table>
+    </div>

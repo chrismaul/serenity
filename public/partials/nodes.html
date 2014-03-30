@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>Nodes, {{ site }}</h3>
+    <p>The nodes associate with this site</p>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Deploy Name</th>
+        <th>Status</th>
+        <th>Version</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="node in nodes">
+        <td>{{node.name}}</td>
+        <td>{{node.deployName}}</td>
+        <td>{{node.status}}</td>
+        <td>{{node.options.version}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

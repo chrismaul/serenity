@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="serenity"  ng-controller="serenityController">
+<head>
+  <title>Serenity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <style>
+  body {
+    margin: 0 0 0 0;
+    padding-top: 70px;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar navbar-inverse  navbar-fixed-top" >
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-banner-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand homeLink" href="/">Serenity</a>
+      </div>
+      <nav class="collapse navbar-collapse navbar-banner-collapse" role="navigation">
+        <ul class="nav navbar-nav" >
+          <li><a class="navLink" href="configure">Configure</a></li>
+          <li><a class="navLink" href="nodes">Nodes</a></li>
+          <li><a class="navLink" href="deployicus">Deployicus</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li ng-if="$route.current.scope.save">
+          <button type="button" class="btn btn-default btn-success navbar-btn" ng-click="$route.current.scope.save()">
+            <span class="glyphicon glyphicon-save"></span> Save
+          </button>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="site in sites" ><a href="/site/{{site}}/{{page}}">{{site}}</a></li>
+          </ul>
+        </li>
+        </ul>
+      </nav>
+    </div>
+    </div>
+   </header>
+   <div class="ng-view reveal-animation"></div>
+   <script src="/components/underscore/underscore-min.js"></script>
+   <script src="/components/angular/angular.min.js"></script>
+   <script src="/components/angular-route/angular-route.min.js"></script>
+   <script src="/components/angular-bootstrap/ui-bootstrap.min.js"></script>
+   <script src="/components/angular-animate/angular-animate.min.js"></script>
+   <script src="/components/jquery/jquery.min.js"></script>
+   <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+   <script src="/js/controller.js"></script>
+</body>
+</html>
+
