@@ -12,10 +12,6 @@ describe("softlayer", function() {
     beforeEach(function() {
       softlayer = softlayerDeployer({domain:"testDomain.com"});
     });
-    it("should transform a name correctly",function() {
-      expect(softlayer.transformTarget("testName")).to.be.equal(
-        "http://testName.testDomain.com");
-    });
     it("should undefined for undefined",function() {
       expect(softlayer.transformTarget(undefined)).to.not.be.ok;
     });
